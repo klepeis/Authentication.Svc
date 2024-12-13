@@ -1,3 +1,4 @@
+using Authentication.Svc.Framework.ExceptionHandlers;
 using Authentication.Svc.GrantTypes;
 using Authentication.Svc.Services;
 using Microsoft.AspNetCore.Builder;
@@ -12,6 +13,8 @@ namespace Authentication.Svc
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddHttpContextAccessor();
+
             // Add services to the container.
             builder.Services.AddScoped<IGrantValidatorService, GrantValidatorService>();
             builder.Services.AddScoped<ITokenGenerationService, TokenGenerationService>();
@@ -19,6 +22,11 @@ namespace Authentication.Svc
             //Register Grant Types
             builder.Services.AddScoped<PasswordGrantType>();
             builder.Services.AddScoped<RefreshTokenGrantType>();
+
+            //Register Exception Handlers
+            builder.Services.AddProblemDetails();  //TODO: Need to see what this does. This is required to use the Global Exception handler.
+            builder.Services.AddExceptionHandler<InvalidGrantTypeExceptionHandler>();
+            builder.Services.AddExceptionHandler<GlobalExceptionHandler>(); //Review underlying code. Setup for this was taken from https://medium.com/@AntonAntonov88/handling-errors-with-iexceptionhandler-in-asp-net-core-8-0-48c71654cc2e
 
             builder.Services.AddControllers();
   
@@ -30,6 +38,7 @@ namespace Authentication.Svc
             {
             }
 
+            app.UseExceptionHandler();
             app.UseHttpsRedirection();
 
             app.UseAuthorization();

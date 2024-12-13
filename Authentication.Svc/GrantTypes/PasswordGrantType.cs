@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Security.Claims;
 using System.Text.Json.Nodes;
+using Authentication.Svc.Framework.Models;
 
 namespace Authentication.Svc.GrantTypes
 {
@@ -16,14 +18,22 @@ namespace Authentication.Svc.GrantTypes
         /// <exception cref="System.NotImplementedException"></exception>
         public void BuildClaims()
         {
+            _claims.Add(new Claim("username", _username));
+            _claims.Add(new Claim("system", "something"));
         }
 
-        public JsonObject CreateResponse()
+        public TokenResponse CreateResponse()
         {
-            TokenGenerationService.CreateAccessToken();
+            
             TokenGenerationService.CreateRefreshToken();
 
-            throw new System.NotImplementedException();
+            return new TokenResponse()
+            {
+                AccessToken = TokenGenerationService.CreateAccessToken(),
+                RefreshToken = TokenGenerationService.CreateRefreshToken(),
+                Expiration = DateTime.Now.AddMinutes(30)
+            };
+
         }
 
         /// <summary>
@@ -43,6 +53,12 @@ namespace Authentication.Svc.GrantTypes
         /// <exception cref="System.NotImplementedException"></exception>
         public void ValidateUser()
         {
+            if (_password.Equals("p@ssw0rD")) // User Validated
+            {
+                return;
+            }
+
+            // Not Validated throw some sort of exception
             throw new System.NotImplementedException();
         }
     }

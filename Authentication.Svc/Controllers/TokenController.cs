@@ -1,6 +1,8 @@
 ﻿using Authentication.Svc.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json.Nodes;
+using Authentication.Svc.Framework.Models;
+using Authentication.Svc.Validators;
 
 namespace Authentication.Svc.Controllers
 {
@@ -16,12 +18,16 @@ namespace Authentication.Svc.Controllers
         }
 
         [HttpPost]
+        [Consumes("application/json")]
         public ActionResult GenerateToken([FromBody] JsonObject tokenRequest)
         {
-            //Validate Request contains required fields (just grant_type?)
+            TokenRequestValidator.Validate(tokenRequest);
 
-            JsonObject tokenResponse = _grantValidatorService.ValidateGrant(tokenRequest);
+            TokenResponse tokenResponse = _grantValidatorService.ValidateGrant(tokenRequest);
 
+            //Maybe HttpResponse is set directly in GrantValidatorService and this method is void.
+
+            // Can potentially leverage new .Net 8 Global Exception handler to catch and return exception messages.
             return Ok(tokenResponse);
         }
     }

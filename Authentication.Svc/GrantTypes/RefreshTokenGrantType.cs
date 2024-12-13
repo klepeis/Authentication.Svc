@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Nodes;
+using Authentication.Svc.Framework.Models;
 
 namespace Authentication.Svc.GrantTypes
 {
@@ -9,7 +10,7 @@ namespace Authentication.Svc.GrantTypes
             throw new System.NotImplementedException();
         }
 
-        public JsonObject CreateResponse()
+        public TokenResponse CreateResponse()
         {
             throw new System.NotImplementedException();
         }

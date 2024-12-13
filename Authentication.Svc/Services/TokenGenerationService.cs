@@ -1,15 +1,17 @@
-﻿namespace Authentication.Svc.Services
+﻿using System;
+
+namespace Authentication.Svc.Services
 {
     public class TokenGenerationService : ITokenGenerationService
     {
         public string CreateAccessToken()
         {
-            throw new System.NotImplementedException();
+            return Guid.NewGuid().ToString();
         }
 
         public string CreateRefreshToken()
         {
-            throw new System.NotImplementedException();
+            return Guid.NewGuid().ToString();
         }
     }
 }

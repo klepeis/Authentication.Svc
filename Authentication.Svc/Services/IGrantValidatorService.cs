@@ -1,8 +1,9 @@
 ﻿using System.Text.Json.Nodes;
+using Authentication.Svc.Framework.Models;
 
 namespace Authentication.Svc.Services;
 
 public interface IGrantValidatorService
 {
-    JsonObject ValidateGrant(JsonObject tokenRequest);
+    TokenResponse ValidateGrant(JsonObject tokenRequest);
 }

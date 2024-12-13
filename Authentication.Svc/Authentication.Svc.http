@@ -1,6 +1,11 @@
 @Authentication.Svc_HostAddress = http://localhost:5026
 
-GET {{Authentication.Svc_HostAddress}}/weatherforecast/
+POST {{Authentication.Svc_HostAddress}}/api/token
 Accept: application/json
-
+Content-Type: application/json
+{
+  "grant_type": "password",
+  "username": "user1",
+  "password": "p@ssw0rD"
+}
 ###
