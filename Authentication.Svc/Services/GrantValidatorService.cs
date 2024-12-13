@@ -21,7 +21,7 @@ namespace Authentication.Svc.Services
 
         public TokenResponse ValidateGrant(JsonObject tokenRequest)
         {
-            IGrantType grantType = SelectGrantType(tokenRequest["grant_type"]?.ToString());
+            IGrantType grantType = SelectGrantType(tokenRequest["grant_type"]!.ToString()); // grant type has already been validated by this point.
             grantType.Init(tokenRequest);
             grantType.ValidateUser();
             grantType.BuildClaims();
