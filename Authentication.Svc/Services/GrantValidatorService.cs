@@ -3,6 +3,9 @@ using System.Text.Json.Nodes;
 
 namespace Authentication.Svc.Services
 {
+    /// <summary>
+    /// This object leverages the strategy pattern to select the appropriate grant type and validate the grant.
+    /// </summary>
     internal class GrantValidatorService : IGrantValidatorService
     {
         public JsonObject ValidateGrant(JsonObject tokenRequest)
