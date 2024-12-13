@@ -24,9 +24,6 @@ namespace Authentication.Svc.GrantTypes
 
         public TokenResponse CreateResponse()
         {
-            
-            TokenGenerationService.CreateRefreshToken();
-
             return new TokenResponse()
             {
                 AccessToken = TokenGenerationService.CreateAccessToken(),
