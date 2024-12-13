@@ -7,14 +7,14 @@ using Authentication.Svc.Framework.Exceptions;
 
 namespace Authentication.Svc.Framework.ExceptionHandlers
 {
-    public class InvalidGrantTypeExceptionHandler : IExceptionHandler
+    public class InvalidClientIdExceptionHandler : IExceptionHandler
     {
         public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
         {
-            if (exception is InvalidGrantTypeException invalidGrantTypeException)
+            if (exception is InvalidClientIdException invalidClientIdException)
             {
                 httpContext.Response.StatusCode = 400;
-                await httpContext.Response.WriteAsync(invalidGrantTypeException.Message, cancellationToken); //TODO: Check Error message and format
+                await httpContext.Response.WriteAsync(invalidClientIdException.Message, cancellationToken); //TODO: Check Error message and format
 
                 return true;
             }

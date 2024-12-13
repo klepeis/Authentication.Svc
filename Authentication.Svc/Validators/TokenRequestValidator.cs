@@ -7,7 +7,12 @@ namespace Authentication.Svc.Validators
     {
         public static void Validate(JsonObject tokenRequest)
         {
-            if(tokenRequest["grant_type"] == null)
+            if (tokenRequest["client_id"] == null)
+            {
+                throw new InvalidClientIdException();
+            }
+
+            if (tokenRequest["grant_type"] == null)
             {
                 throw new InvalidGrantTypeException();
             }

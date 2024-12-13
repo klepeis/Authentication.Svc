@@ -1,5 +1,17 @@
 @Authentication.Svc_HostAddress = http://localhost:5026
 
+### Successful login
+POST {{Authentication.Svc_HostAddress}}/api/token
+Accept: application/json
+Content-Type: application/json
+{
+  "client_id": "client1",
+  "grant_type": "password",
+  "username": "user1",
+  "password": "p@ssw0rD"
+}
+
+### Invalid Client_Id
 POST {{Authentication.Svc_HostAddress}}/api/token
 Accept: application/json
 Content-Type: application/json
@@ -8,4 +20,13 @@ Content-Type: application/json
   "username": "user1",
   "password": "p@ssw0rD"
 }
-###
+
+### Invalid Grant Type
+POST {{Authentication.Svc_HostAddress}}/api/token
+Accept: application/json
+Content-Type: application/json
+{
+  "client_id": "client1",
+  "username": "user1",
+  "password": "p@ssw0rD"
+}

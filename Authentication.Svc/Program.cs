@@ -25,6 +25,7 @@ namespace Authentication.Svc
 
             //Register Exception Handlers
             builder.Services.AddProblemDetails();  //TODO: Need to see what this does. This is required to use the Global Exception handler.
+            builder.Services.AddExceptionHandler<InvalidClientIdExceptionHandler>();
             builder.Services.AddExceptionHandler<InvalidGrantTypeExceptionHandler>();
             builder.Services.AddExceptionHandler<GlobalExceptionHandler>(); //Review underlying code. Setup for this was taken from https://medium.com/@AntonAntonov88/handling-errors-with-iexceptionhandler-in-asp-net-core-8-0-48c71654cc2e
 
