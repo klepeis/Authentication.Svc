@@ -1,5 +1,8 @@
 ﻿using Authentication.Svc.GrantTypes;
 using System.Text.Json.Nodes;
+using Authentication.Svc.Extensions;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Authentication.Svc.Services
 {
@@ -8,6 +11,12 @@ namespace Authentication.Svc.Services
     /// </summary>
     internal class GrantValidatorService : IGrantValidatorService
     {
+        private IHttpContextAccessor _httpContextAccessor;
+
+        public GrantValidatorService(IHttpContextAccessor httpContextAccessor)
+        {
+            _httpContextAccessor = httpContextAccessor;
+        }
         public JsonObject ValidateGrant(JsonObject tokenRequest)
         {
             IGrantType grantType = SelectGrantType(tokenRequest["grant_type"]?.ToString());
@@ -22,9 +31,9 @@ namespace Authentication.Svc.Services
             switch (grantType)
             {
                 case "password":
-                    return new PasswordGrantType();
+                    return _httpContextAccessor.GetService<PasswordGrantType>();
                 case "refresh_token":
-                    return new RefreshTokenGrantType();
+                    return _httpContextAccessor.GetService<RefreshTokenGrantType>();
                 default:
                     throw new System.NotImplementedException();
             }

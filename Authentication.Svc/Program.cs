@@ -1,3 +1,4 @@
+using Authentication.Svc.GrantTypes;
 using Authentication.Svc.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +15,10 @@ namespace Authentication.Svc
             // Add services to the container.
             builder.Services.AddScoped<IGrantValidatorService, GrantValidatorService>();
             builder.Services.AddScoped<ITokenGenerationService, TokenGenerationService>();
+
+            //Register Grant Types
+            builder.Services.AddScoped<PasswordGrantType>();
+            builder.Services.AddScoped<RefreshTokenGrantType>();
 
             builder.Services.AddControllers();
   
