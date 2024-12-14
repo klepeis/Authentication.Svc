@@ -1,7 +1,9 @@
 using Authentication.Svc.Framework.ExceptionHandlers;
 using Authentication.Svc.GrantTypes;
+using Authentication.Svc.Infrastructure;
 using Authentication.Svc.Services;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -28,6 +30,12 @@ namespace Authentication.Svc
             builder.Services.AddExceptionHandler<InvalidClientIdExceptionHandler>();
             builder.Services.AddExceptionHandler<InvalidGrantTypeExceptionHandler>();
             builder.Services.AddExceptionHandler<GlobalExceptionHandler>(); //Review underlying code. Setup for this was taken from https://medium.com/@AntonAntonov88/handling-errors-with-iexceptionhandler-in-asp-net-core-8-0-48c71654cc2e
+
+            //builder.Services.AddDbContext<AuthDbContext>((serviceProvider, options) =>
+            //{
+            //    string connectionString = "";
+            //    options.UseSqlServer(connectionString);
+            //});
 
             builder.Services.AddControllers();
   

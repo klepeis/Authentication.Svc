@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Nodes;
 using Authentication.Svc.Framework.Exceptions;
 
-namespace Authentication.Svc.Validators
+namespace Authentication.Svc.Framework.Validators
 {
     public class TokenRequestValidator
     {

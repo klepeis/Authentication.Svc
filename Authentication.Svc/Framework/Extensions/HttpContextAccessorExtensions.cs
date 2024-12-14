@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Authentication.Svc.Framework.Extensions;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Authentication.Svc.Extensions
+namespace Authentication.Svc.Framework.Extensions
 {
     public static class HttpContextAccessorExtensions
     {

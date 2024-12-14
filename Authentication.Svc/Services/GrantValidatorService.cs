@@ -1,9 +1,9 @@
-﻿using Authentication.Svc.Extensions;
-using Authentication.Svc.GrantTypes;
+﻿using Authentication.Svc.GrantTypes;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using System.Text.Json.Nodes;
 using Authentication.Svc.Framework.Models;
+using Authentication.Svc.Framework.Extensions;
 
 namespace Authentication.Svc.Services
 {

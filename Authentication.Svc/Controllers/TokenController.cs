@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json.Nodes;
 using Authentication.Svc.Framework.Models;
-using Authentication.Svc.Validators;
+using Authentication.Svc.Framework.Validators;
 
 namespace Authentication.Svc.Controllers
 {
