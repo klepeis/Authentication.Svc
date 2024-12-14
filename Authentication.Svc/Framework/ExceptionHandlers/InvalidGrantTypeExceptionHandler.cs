@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
+﻿using Authentication.Svc.Framework.Exceptions;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Authentication.Svc.Framework.Exceptions;
 
 namespace Authentication.Svc.Framework.ExceptionHandlers
 {

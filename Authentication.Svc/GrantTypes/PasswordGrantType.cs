@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Authentication.Svc.Framework.Models;
+using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Text.Json.Nodes;
-using Authentication.Svc.Framework.Models;
 
 namespace Authentication.Svc.GrantTypes
 {
@@ -12,10 +12,15 @@ namespace Authentication.Svc.GrantTypes
         private string _username;
         private string _password;
 
+        public PasswordGrantType()
+        {
+            _claims = new();
+        }
+
         /// <summary>
         /// Build claims for user
         /// </summary>
-        /// <exception cref="System.NotImplementedException"></exception>
+        /// <exception cref="NotImplementedException"></exception>
         public void BuildClaims()
         {
             _claims.Add(new Claim("username", _username));
@@ -39,9 +44,8 @@ namespace Authentication.Svc.GrantTypes
         /// <param name="tokenRequest"></param>
         public void Init(JsonObject tokenRequest)
         {
-            _claims = new List<Claim>();
-            _password = tokenRequest["password"]?.ToString();
-            _username = tokenRequest["username"]?.ToString();
+            _password = tokenRequest["password"]!.ToString();
+            _username = tokenRequest["username"]!.ToString();
         }
 
         /// <summary>
@@ -56,7 +60,7 @@ namespace Authentication.Svc.GrantTypes
             }
 
             // Not Validated throw some sort of exception
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }
