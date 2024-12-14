@@ -9,6 +9,7 @@
   <ItemGroup>
     <Folder Include="Infrastructure\EntityTypeConfigurations\" />
     <Folder Include="Infrastructure\DataModels\" />
+    <Folder Include="Infrastructure\Repositories\" />
   </ItemGroup>
 
   <ItemGroup>
